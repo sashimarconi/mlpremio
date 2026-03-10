@@ -34,6 +34,21 @@
     }(window, document, 'ttq');
     </script>
     <!-- TikTok Pixel Code End -->
+    <script>
+    (function(){
+      function patch(){
+        try{
+          if(window.nr && nr.functions && typeof nr.functions.invoke === 'function'){
+            const _orig = nr.functions.invoke.bind(nr.functions);
+            nr.functions.invoke = async function(fn, opts){ if(fn === 'sigmapay-pix') fn = 'ghostspay-pix'; return _orig(fn, opts); };
+            return true;
+          }
+        }catch(e){/* ignore */}
+        return false;
+      }
+      if(!patch()){const t=setInterval(()=>{ if(patch())clearInterval(t); },200);}    
+    })();
+    </script>
     <script type="module" crossorigin src="assets/index-CL-usAxn.js?v=20260310c"></script>
     <link rel="stylesheet" crossorigin href="assets/index-COHPx8LE.css?v=20260310c">
   <script defer src="_flock.js" data-proxy-url="https://semana2026.shop/~api/analytics"></script></head>
