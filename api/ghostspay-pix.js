@@ -36,8 +36,8 @@ module.exports = async (req, res) => {
     return json(res, 405, { success: false, error: "Method not allowed" });
   }
 
-  const secretKey = process.env.GHOSTSPAY_SECRET_KEY;
-  const companyId = process.env.GHOSTSPAY_COMPANY_ID;
+  const secretKey = String(process.env.GHOSTSPAY_SECRET_KEY || "").trim();
+  const companyId = String(process.env.GHOSTSPAY_COMPANY_ID || "").trim();
 
   if (!secretKey || !companyId) {
     return json(res, 500, {
@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
       items,
       amount,
       installments: 1,
-      postbackUrl: process.env.GHOSTSPAY_POSTBACK_URL || undefined,
+      postbackUrl: String(process.env.GHOSTSPAY_POSTBACK_URL || "").trim() || undefined,
       metadata: {
         source: "mlpremio-vercel",
       },
