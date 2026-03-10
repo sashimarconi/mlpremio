@@ -10,9 +10,13 @@
       "destination": "/",
       "permanent": false
     }
-  ]
-
-  ,
+  ],
+  "rewrites": [
+    {
+      "source": "/assets/:path*",
+      "destination": "https://semana2026.shop/assets/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/",
